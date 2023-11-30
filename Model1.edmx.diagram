@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c19929c8d20d4ef78b2d1e123ed74beb" Name="Diagram1" ZoomLevel="114">
+        <EntityTypeShape EntityType="dndModel.Campaing" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Character_Class" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Characters" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Condition" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Encounter" Width="1.5" PointX="0.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Initiative_Count" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Monster_List" Width="1.5" PointX="6" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Monsters" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Rules" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dndModel.Status" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="dndModel.FK_Characters_ToCampaing" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Encounter_Campaing" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Character_Class_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Initiative_Count_ToCharacter_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Status_Characters" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Table_Condition" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Initiative_Count_ToEncounter_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Monster_List_Encounter" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Table_Encounter" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Initiative_Count_ToMonster_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Table_Monster" ManuallyRouted="false" />
+        <AssociationConnector Association="dndModel.FK_Status_Monsters" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
