@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dndModelStoreContainer" CdmEntityContainer="dndEntities">
+    <EntitySetMapping Name="Campaing">
+      <EntityTypeMapping TypeName="dndModel.Campaing">
+        <MappingFragment StoreEntitySet="Campaing">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Character_Class">
+      <EntityTypeMapping TypeName="dndModel.Character_Class">
+        <MappingFragment StoreEntitySet="Character_Class">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="class_name" ColumnName="class_name" />
+          <ScalarProperty Name="class_level" ColumnName="class_level" />
+          <ScalarProperty Name="character_ID" ColumnName="character_ID" />
+          <ScalarProperty Name="subclass" ColumnName="subclass" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Characters">
+      <EntityTypeMapping TypeName="dndModel.Characters">
+        <MappingFragment StoreEntitySet="Characters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="specie" ColumnName="specie" />
+          <ScalarProperty Name="Campaing_ID" ColumnName="Campaing_ID" />
+          <ScalarProperty Name="IB" ColumnName="IB" />
+          <ScalarProperty Name="AC" ColumnName="AC" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="HP" ColumnName="HP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Condition">
+      <EntityTypeMapping TypeName="dndModel.Condition">
+        <MappingFragment StoreEntitySet="Condition">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="effect" ColumnName="effect" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Encounter">
+      <EntityTypeMapping TypeName="dndModel.Encounter">
+        <MappingFragment StoreEntitySet="Encounter">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="turn" ColumnName="turn" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="Campaing_ID" ColumnName="Campaing_ID" />
+          <ScalarProperty Name="difficulty" ColumnName="difficulty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Initiative_Count">
+      <EntityTypeMapping TypeName="dndModel.Initiative_Count">
+        <MappingFragment StoreEntitySet="Initiative_Count">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Initiative" ColumnName="Initiative" />
+          <ScalarProperty Name="Encounter_ID" ColumnName="Encounter_ID" />
+          <ScalarProperty Name="Monster_Id" ColumnName="Monster_Id" />
+          <ScalarProperty Name="Character_Id" ColumnName="Character_Id" />
+          <ScalarProperty Name="Current_HP" ColumnName="Current_HP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Monster_List">
+      <EntityTypeMapping TypeName="dndModel.Monster_List">
+        <MappingFragment StoreEntitySet="Monster_List">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Encounter_ID" ColumnName="Encounter_ID" />
+          <ScalarProperty Name="Monster_ID" ColumnName="Monster_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Monsters">
+      <EntityTypeMapping TypeName="dndModel.Monsters">
+        <MappingFragment StoreEntitySet="Monsters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CR" ColumnName="CR" />
+          <ScalarProperty Name="Statblock" ColumnName="Statblock" />
+          <ScalarProperty Name="IB" ColumnName="IB" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="AC" ColumnName="AC" />
+          <ScalarProperty Name="HP" ColumnName="HP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rules">
+      <EntityTypeMapping TypeName="dndModel.Rules">
+        <MappingFragment StoreEntitySet="Rules">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="dndModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Duration_Type" ColumnName="Duration_Type" />
+          <ScalarProperty Name="Duration_Time" ColumnName="Duration_Time" />
+          <ScalarProperty Name="Condition_ID" ColumnName="Condition_ID" />
+          <ScalarProperty Name="Character_Id" ColumnName="Character_Id" />
+          <ScalarProperty Name="Encounter_ID" ColumnName="Encounter_ID" />
+          <ScalarProperty Name="Monster_Id" ColumnName="Monster_Id" />
+          <ScalarProperty Name="Turn_Of_Round" ColumnName="Turn_Of_Round" />
+          <ScalarProperty Name="Round_To_Hide" ColumnName="Round_To_Hide" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

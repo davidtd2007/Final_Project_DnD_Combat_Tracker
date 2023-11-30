@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dndModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Campaing">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Character_Class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="class_name" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="class_level" Type="int" Nullable="false" />
+    <Property Name="character_ID" Type="int" Nullable="false" />
+    <Property Name="subclass" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Characters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="specie" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Campaing_ID" Type="int" Nullable="false" />
+    <Property Name="IB" Type="int" Nullable="false" />
+    <Property Name="AC" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="HP" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Condition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="effect" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Encounter">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="turn" Type="int" Nullable="false" />
+    <Property Name="round" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Campaing_ID" Type="int" Nullable="false" />
+    <Property Name="difficulty" Type="nchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Initiative_Count">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Initiative" Type="int" Nullable="false" />
+    <Property Name="Encounter_ID" Type="int" Nullable="false" />
+    <Property Name="Monster_Id" Type="int" />
+    <Property Name="Character_Id" Type="int" />
+    <Property Name="Current_HP" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Monster_List">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Encounter_ID" Type="int" Nullable="false" />
+    <Property Name="Monster_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Monsters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CR" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Statblock" Type="image" />
+    <Property Name="IB" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AC" Type="int" Nullable="false" />
+    <Property Name="HP" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rules">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Duration_Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Duration_Time" Type="int" Nullable="false" />
+    <Property Name="Condition_ID" Type="int" Nullable="false" />
+    <Property Name="Character_Id" Type="int" />
+    <Property Name="Encounter_ID" Type="int" Nullable="false" />
+    <Property Name="Monster_Id" Type="int" />
+    <Property Name="Turn_Of_Round" Type="int" />
+    <Property Name="Round_To_Hide" Type="int" />
+  </EntityType>
+  <Association Name="FK_Character_Class_ToTable">
+    <End Role="Characters" Type="Self.Characters" Multiplicity="1" />
+    <End Role="Character_Class" Type="Self.Character_Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Characters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Character_Class">
+        <PropertyRef Name="character_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Characters_ToCampaing">
+    <End Role="Campaing" Type="Self.Campaing" Multiplicity="1" />
+    <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campaing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Characters">
+        <PropertyRef Name="Campaing_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Encounter_Campaing">
+    <End Role="Campaing" Type="Self.Campaing" Multiplicity="1" />
+    <End Role="Encounter" Type="Self.Encounter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campaing">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Encounter">
+        <PropertyRef Name="Campaing_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Initiative_Count_ToCharacter_ID">
+    <End Role="Characters" Type="Self.Characters" Multiplicity="0..1" />
+    <End Role="Initiative_Count" Type="Self.Initiative_Count" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Characters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Initiative_Count">
+        <PropertyRef Name="Character_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Initiative_Count_ToEncounter_ID">
+    <End Role="Encounter" Type="Self.Encounter" Multiplicity="1" />
+    <End Role="Initiative_Count" Type="Self.Initiative_Count" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encounter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Initiative_Count">
+        <PropertyRef Name="Encounter_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Initiative_Count_ToMonster_ID">
+    <End Role="Monsters" Type="Self.Monsters" Multiplicity="0..1" />
+    <End Role="Initiative_Count" Type="Self.Initiative_Count" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monsters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Initiative_Count">
+        <PropertyRef Name="Monster_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Monster_List_Encounter">
+    <End Role="Encounter" Type="Self.Encounter" Multiplicity="1" />
+    <End Role="Monster_List" Type="Self.Monster_List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encounter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Monster_List">
+        <PropertyRef Name="Encounter_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Characters">
+    <End Role="Characters" Type="Self.Characters" Multiplicity="0..1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Characters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="Character_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Status_Monsters">
+    <End Role="Monsters" Type="Self.Monsters" Multiplicity="0..1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monsters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="Monster_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_Condition">
+    <End Role="Condition" Type="Self.Condition" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Condition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="Condition_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_Encounter">
+    <End Role="Encounter" Type="Self.Encounter" Multiplicity="1" />
+    <End Role="Status" Type="Self.Status" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Encounter">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Status">
+        <PropertyRef Name="Encounter_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_Monster">
+    <End Role="Monsters" Type="Self.Monsters" Multiplicity="1" />
+    <End Role="Monster_List" Type="Self.Monster_List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Monsters">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Monster_List">
+        <PropertyRef Name="Monster_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dndModelStoreContainer">
+    <EntitySet Name="Campaing" EntityType="Self.Campaing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Character_Class" EntityType="Self.Character_Class" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Condition" EntityType="Self.Condition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Encounter" EntityType="Self.Encounter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Initiative_Count" EntityType="Self.Initiative_Count" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Monster_List" EntityType="Self.Monster_List" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Monsters" EntityType="Self.Monsters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rules" EntityType="Self.Rules" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Character_Class_ToTable" Association="Self.FK_Character_Class_ToTable">
+      <End Role="Characters" EntitySet="Characters" />
+      <End Role="Character_Class" EntitySet="Character_Class" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Characters_ToCampaing" Association="Self.FK_Characters_ToCampaing">
+      <End Role="Campaing" EntitySet="Campaing" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Encounter_Campaing" Association="Self.FK_Encounter_Campaing">
+      <End Role="Campaing" EntitySet="Campaing" />
+      <End Role="Encounter" EntitySet="Encounter" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Initiative_Count_ToCharacter_ID" Association="Self.FK_Initiative_Count_ToCharacter_ID">
+      <End Role="Characters" EntitySet="Characters" />
+      <End Role="Initiative_Count" EntitySet="Initiative_Count" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Initiative_Count_ToEncounter_ID" Association="Self.FK_Initiative_Count_ToEncounter_ID">
+      <End Role="Encounter" EntitySet="Encounter" />
+      <End Role="Initiative_Count" EntitySet="Initiative_Count" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Initiative_Count_ToMonster_ID" Association="Self.FK_Initiative_Count_ToMonster_ID">
+      <End Role="Monsters" EntitySet="Monsters" />
+      <End Role="Initiative_Count" EntitySet="Initiative_Count" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Monster_List_Encounter" Association="Self.FK_Monster_List_Encounter">
+      <End Role="Encounter" EntitySet="Encounter" />
+      <End Role="Monster_List" EntitySet="Monster_List" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Characters" Association="Self.FK_Status_Characters">
+      <End Role="Characters" EntitySet="Characters" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Status_Monsters" Association="Self.FK_Status_Monsters">
+      <End Role="Monsters" EntitySet="Monsters" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_Condition" Association="Self.FK_Table_Condition">
+      <End Role="Condition" EntitySet="Condition" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_Encounter" Association="Self.FK_Table_Encounter">
+      <End Role="Encounter" EntitySet="Encounter" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_Monster" Association="Self.FK_Table_Monster">
+      <End Role="Monsters" EntitySet="Monsters" />
+      <End Role="Monster_List" EntitySet="Monster_List" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
